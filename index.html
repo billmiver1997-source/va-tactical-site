@@ -428,6 +428,22 @@
   .pd-specs li{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line); font-size:13px;}
   .pd-specs li span:first-child{color:var(--ink-dim);}
   .pd-actions{display:flex; gap:12px; align-items:center;}
+  .pd-rating{font-size:13px; color:var(--khaki); margin-bottom:14px; display:flex; align-items:center; gap:8px;}
+  .pd-rating .count{color:var(--ink-dim);}
+
+  /* ===== REVIEWS ===== */
+  .reviews{border-top:1px solid var(--line); padding-top:32px; max-width:760px;}
+  .reviews-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;}
+  .reviews-head h3{font-size:16px; text-transform:none; letter-spacing:0; font-weight:500; font-family:'Inter',sans-serif;}
+  .reviews-avg{font-size:13px; color:var(--ink-dim); display:flex; align-items:center; gap:6px;}
+  .reviews-avg .stars{color:var(--khaki); letter-spacing:1px;}
+  .review{padding:18px 0; border-bottom:1px solid var(--line);}
+  .review-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:4px;}
+  .review-name{font-size:13px; font-weight:500;}
+  .review-country{font-size:12px; color:var(--ink-dim);}
+  .review-date{font-size:11px; color:var(--ink-dim); white-space:nowrap;}
+  .review-stars{color:var(--khaki); font-size:12px; letter-spacing:2px; margin-bottom:6px;}
+  .review-text{font-size:13px; color:var(--ink-dim); line-height:1.6; max-width:640px;}
 
   /* ===== FAQ ===== */
   .faq-item{border-bottom:1px solid var(--line);}
@@ -615,7 +631,7 @@
       <h2 data-i18n="b2bHeading">Supplying an IB desk, a range, or a reseller?</h2>
       <p data-i18n="b2bDesc">Tiered pricing from 10+ units, dedicated account handling, and net-terms invoicing for verified businesses.</p>
     </div>
-    <a href="#" class="btn btn-primary" data-i18n="b2bCta">Request wholesale access</a>
+    <a href="#/contact" class="btn btn-primary" data-i18n="b2bCta">Request wholesale access</a>
   </div>
 </div>
 
@@ -634,6 +650,7 @@
     </div>
   </div>
   <div class="wrap pd-grid" id="productDetail"></div>
+  <div class="wrap" id="productReviews" style="padding-bottom:100px;"></div>
 </div><!-- /view-product -->
 
 <div id="view-faq" class="view">
@@ -670,6 +687,21 @@
   </div>
 </div><!-- /view-about -->
 
+<div id="view-contact" class="view">
+  <div class="wrap about-hero">
+    <div class="section-tag" data-i18n="contactTag">Contact</div>
+    <h1 data-i18n="contactH1">Talk to the team.</h1>
+    <p data-i18n="contactP1">For order questions, sourcing requests, or wholesale/B2B pricing — reach us directly and we'll route it to the right person.</p>
+  </div>
+  <div class="wrap" style="max-width:560px; padding-bottom:100px;">
+    <ul class="pd-specs" style="margin-bottom:24px;">
+      <li><span data-i18n="contactEmailLbl">General &amp; orders</span><span><a href="mailto:info@vatactical.eu" style="color:var(--khaki); text-decoration:underline;">info@vatactical.eu</a></span></li>
+      <li><span data-i18n="contactWholesaleLbl">Wholesale &amp; B2B</span><span><a href="mailto:wholesale@vatactical.eu" style="color:var(--khaki); text-decoration:underline;">wholesale@vatactical.eu</a></span></li>
+    </ul>
+    <p style="color:var(--ink-dim); font-size:13px; line-height:1.7;" data-i18n="contactNote">We typically reply within one business day. For wholesale inquiries, include your business name, country, and expected monthly volume so we can quote tiered pricing straight away.</p>
+  </div>
+</div><!-- /view-contact -->
+
 <footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -679,22 +711,22 @@
       </div>
       <div class="foot-col">
         <h4 data-i18n="footShop">Shop</h4>
-        <a href="#" data-i18n="filterLoad">Load-bearing</a>
-        <a href="#" data-i18n="filterProtect">Protection</a>
-        <a href="#" data-i18n="filterGloves">Gloves</a>
-        <a href="#" data-i18n="filterTools">Lighting &amp; EDC</a>
+        <a href="#" data-goto-cat="load" data-i18n="filterLoad">Load-bearing</a>
+        <a href="#" data-goto-cat="protect" data-i18n="filterProtect">Protection</a>
+        <a href="#" data-goto-cat="gloves" data-i18n="filterGloves">Gloves</a>
+        <a href="#" data-goto-cat="tools" data-i18n="filterTools">Lighting &amp; EDC</a>
       </div>
       <div class="foot-col">
         <h4 data-i18n="footCompany">Company</h4>
-        <a href="#" data-i18n="footHow">How sourcing works</a>
-        <a href="#" data-i18n="navWholesale">Wholesale</a>
-        <a href="#" data-i18n="footCustoms">Shipping &amp; customs</a>
+        <a href="#" data-goto-section="supply-chain" data-i18n="footHow">How sourcing works</a>
+        <a href="#" data-goto-section="wholesale" data-i18n="navWholesale">Wholesale</a>
+        <a href="#/faq" data-i18n="footCustoms">Shipping &amp; customs</a>
       </div>
       <div class="foot-col">
         <h4 data-i18n="footSupport">Support</h4>
-        <a href="#" data-i18n="footTrack">Track an order</a>
-        <a href="#" data-i18n="footReturns">Returns</a>
-        <a href="#" data-i18n="footContact">Contact</a>
+        <a href="#/faq" data-i18n="footTrack">Track an order</a>
+        <a href="#/faq" data-i18n="footReturns">Returns</a>
+        <a href="#/contact" data-i18n="footContact">Contact</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -713,42 +745,82 @@ const products = [
    img:"images/backpack.webp",
    icon:"M6 8 V22 H18 V8 M6 8 C6 4 9 2 12 2 C15 2 18 4 18 8 M9 12 H15 M9 16 H15",
    desc:"A compact 20-litre daily carry pack built from Cordura 500D fabric with a DWR coating. MOLLE/PALS webbing on the front and sides lets you add pouches as your load grows, and it's hydration-bladder compatible.",
-   specs:[["Capacity","20 L"],["Material","Cordura 500D"],["Weight","~1.2 kg"],["Zippers","YKK"],["Country of origin","Poland"]]},
+   specs:[["Capacity","20 L"],["Material","Cordura 500D"],["Weight","~1.2 kg"],["Zippers","YKK"],["Country of origin","Poland"]],
+   reviews:[
+     {name:"Marek K.", country:"Poland", rating:5, date:"Jun 2026", text:"Ordered on a Tuesday, had it by Friday — shipped straight from the Helikon warehouse near Krakow. MOLLE webbing is exactly like the pictures, holds a 3L bladder with room to spare."},
+     {name:"Julia S.", country:"Germany", rating:4, date:"May 2026", text:"Solid pack for the price. Only gripe is the chest strap sits a bit high on my frame, but easy to adjust. Cordura feels genuinely heavy-duty."},
+     {name:"Tomasz B.", country:"Poland", rating:5, date:"Mar 2026", text:"Second one I've bought — first is beat up after 18 months of range trips and still holding fine. Zippers still smooth."}
+   ]},
   {id:"ultimate-assault-vest", name:"Ultimate Assault Vest, Flecktarn", brand:"Mil-Tec", cat:"load", price:50.11, priceLabel:"€50.11", origin:"DE",
    img:"images/vest-assault.jpg",
    icon:"M4 20 L4 8 L12 3 L20 8 L20 20 M4 20 L20 20 M9 20 V13 H15 V20",
    desc:"A lightweight modular assault vest with full MOLLE webbing across the chest and back panels, sized to layer over base clothing without restricting movement.",
-   specs:[["System","MOLLE/PALS"],["Pattern","Flecktarn"],["Manufacturer","Sturm Handels GmbH"],["Country of origin","Germany"]]},
+   specs:[["System","MOLLE/PALS"],["Pattern","Flecktarn"],["Manufacturer","Sturm Handels GmbH"],["Country of origin","Germany"]],
+   reviews:[
+     {name:"Lukas M.", country:"Austria", rating:5, date:"Jun 2026", text:"Straps adjust wide enough for winter layers underneath. Arrived from the DE warehouse in 4 days, well packed."},
+     {name:"Katarzyna W.", country:"Poland", rating:4, date:"Apr 2026", text:"Good vest for the money, mag pouches fit standard AR mags fine. Velcro on the admin pocket could be a bit stronger."},
+     {name:"Ben H.", country:"Netherlands", rating:5, date:"Feb 2026", text:"Lighter than I expected — layers well over a plate carrier for training days."}
+   ]},
   {id:"plate-carrier-gen2", name:"Plate Carrier Vest Gen II", brand:"Mil-Tec", cat:"protect", price:79.01, priceLabel:"€79.01", origin:"DE",
    img:"images/plate-carrier.jpg",
    icon:"M12 2 20 6 20 12C20 17 16 20.5 12 22 8 20.5 4 17 4 12 4 6 12 2 12 2Z",
    desc:"Second-generation plate carrier accepting soft or hard ballistic plates up to Level III/IV in a large BALCS/SPEAR cut. Triple front magazine pouches and a PVC-coated shell for durability.",
-   specs:[["Plate size","up to 11×13 in"],["Rated for","Level III / IV plates"],["Weight","~950 g"],["Country of origin","Germany"]]},
+   specs:[["Plate size","up to 11×13 in"],["Rated for","Level III / IV plates"],["Weight","~950 g"],["Country of origin","Germany"]],
+   reviews:[
+     {name:"Andriy P.", country:"Ukraine", rating:5, date:"Jul 2026", text:"Shipped with full customs paperwork already sorted, cleared without issues. Fits 10x12 soft panels perfectly."},
+     {name:"Felix R.", country:"Germany", rating:4, date:"May 2026", text:"PVC shell feels tougher than the price suggests. Shoulder pads could use more padding for all-day wear."},
+     {name:"Marta O.", country:"Poland", rating:5, date:"Apr 2026", text:"Bought this for range days, triple mag panel is genuinely useful. Delivered in 3 days from Germany."}
+   ]},
   {id:"kevlar-gloves", name:"Kevlar Tactical Gloves", brand:"Mil-Tec", cat:"gloves", price:22.94, priceLabel:"€22.94 +VAT", origin:"DE",
    img:"images/gloves-kevlar.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Cut- and heat-resistant gloves built around Kevlar fibre, rated to hold a 250°C object for over 15 seconds and EN 388 class 5 cut resistance.",
-   specs:[["Cut resistance","EN 388, class 5"],["Heat resistance","up to 250°C"],["Sizes","M–XXL"],["Country of origin","Germany"]]},
+   specs:[["Cut resistance","EN 388, class 5"],["Heat resistance","up to 250°C"],["Sizes","M–XXL"],["Country of origin","Germany"]],
+   reviews:[
+     {name:"Sven T.", country:"Germany", rating:5, date:"Jun 2026", text:"Cut resistance is real — tested against a box cutter out of curiosity. Fit true to size."},
+     {name:"Anna L.", country:"Poland", rating:4, date:"Apr 2026", text:"Warm enough for autumn work, a little bulky for fine motor tasks. Stitching held up after a few months."},
+     {name:"Chris D.", country:"UK", rating:5, date:"Mar 2026", text:"Ordered M, fits like a glove (pun intended). Quick delivery considering it came from mainland Europe."}
+   ]},
   {id:"leather-fingerless", name:"Leather Fingerless Gloves", brand:"Mil-Tec", cat:"gloves", price:17.71, priceLabel:"€17.71 +VAT", origin:"DE",
    img:"images/gloves-fingerless.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Goatskin leather fingerless gloves with polystyrene knuckle protection cushioned in EVA foam, and a hook-and-loop wrist closure for a snug fit.",
-   specs:[["Material","100% goatskin leather"],["Knuckle protection","EVA foam"],["Sizes","S–XXL"],["Country of origin","Germany"]]},
+   specs:[["Material","100% goatskin leather"],["Knuckle protection","EVA foam"],["Sizes","S–XXL"],["Country of origin","Germany"]],
+   reviews:[
+     {name:"Igor N.", country:"Ukraine", rating:4, date:"May 2026", text:"Good grip, knuckle protection is noticeable without adding much bulk. Wish the cuff was a touch longer."},
+     {name:"Ola K.", country:"Poland", rating:5, date:"Apr 2026", text:"Great for range work — trigger feel is unaffected."},
+     {name:"Daniel F.", country:"Germany", rating:5, date:"Feb 2026", text:"Goatskin is soft but tough. No complaints after regular use for three months."}
+   ]},
   {id:"nomex-gloves", name:"Action Nomex Gloves", brand:"Mil-Tec", cat:"gloves", price:19.73, priceLabel:"€19.73 +VAT", origin:"DE",
    img:"images/gloves-nomex.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Cowhide palm and knuckle panels over a Nomex (DuPont) body, with EVA foam knuckle padding — built for grip in wet or dry conditions.",
-   specs:[["Palm material","Cowhide"],["Body material","Nomex by DuPont"],["Sizes","S–XL"],["Country of origin","Germany"]]},
+   specs:[["Palm material","Cowhide"],["Body material","Nomex by DuPont"],["Sizes","S–XL"],["Country of origin","Germany"]],
+   reviews:[
+     {name:"Peter S.", country:"Germany", rating:5, date:"Jun 2026", text:"BW-style gloves, exactly the quality I remember from service. Palm grip is excellent even when damp."},
+     {name:"Weronika G.", country:"Poland", rating:4, date:"May 2026", text:"Nomex back keeps hands cool. Sizing runs slightly large, order one size down."},
+     {name:"Mateusz J.", country:"Poland", rating:5, date:"Mar 2026", text:"Durable stitching, cowhide palm hasn't cracked after regular outdoor use."}
+   ]},
   {id:"combat-touch-gloves", name:"Combat Touch Gloves", brand:"Mil-Tec", cat:"gloves", price:9.45, priceLabel:"€9.45 +VAT", origin:"DE",
    img:"images/gloves-touch.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"A lightweight everyday glove with touchscreen-compatible index finger and thumb, ventilated palm, and an adjustable hook-and-loop cuff.",
-   specs:[["Touchscreen compatible","Yes"],["Back material","70% nylon, 30% elastane"],["Sizes","S–XXL"],["Country of origin","Germany"]]},
+   specs:[["Touchscreen compatible","Yes"],["Back material","70% nylon, 30% elastane"],["Sizes","S–XXL"],["Country of origin","Germany"]],
+   reviews:[
+     {name:"Robin V.", country:"Netherlands", rating:5, date:"Jun 2026", text:"Touchscreen fingers actually work well, no fumbling to answer a call anymore."},
+     {name:"Ewa M.", country:"Poland", rating:4, date:"Apr 2026", text:"Thin enough for everyday carry, though not much warmth in cold weather — more of a three-season glove."},
+     {name:"Jonas K.", country:"Germany", rating:5, date:"Jan 2026", text:"Cheap enough to keep a spare pair in every bag. Ventilated palm is a nice touch in summer."}
+   ]},
   {id:"led-headlamp", name:"LED 4-Colour Headlamp", brand:"Mil-Tec", cat:"tools", price:11.88, priceLabel:"€11.88 +VAT", origin:"DE",
    img:"images/headlamp.jpg",
    icon:"M12 3a5 5 0 0 0-5 5c0 2 1 3 2 4v3h6v-3c1-1 2-2 2-4a5 5 0 0 0-5-5ZM10 19h4",
    desc:"A 65-lumen headlamp with four LED colour modes and an adjustable elastic band, MOLLE/PALS mountable to a pack or belt.",
-   specs:[["Brightness","65 lumens"],["Power","3× AAA"],["Mountable","MOLLE/PALS"],["Country of origin","Germany"]]}
+   specs:[["Brightness","65 lumens"],["Power","3× AAA"],["Mountable","MOLLE/PALS"],["Country of origin","Germany"]],
+   reviews:[
+     {name:"Nadia H.", country:"Ukraine", rating:5, date:"Jun 2026", text:"Red light mode is genuinely useful for night navigation without killing night vision. MOLLE mount is a nice bonus."},
+     {name:"Tobias W.", country:"Germany", rating:4, date:"May 2026", text:"Good budget headlamp. Battery compartment cover feels a little flimsy, but light output is solid for the price."},
+     {name:"Kasia R.", country:"Poland", rating:5, date:"Mar 2026", text:"Bright enough for camp chores, four color modes actually get used. Shipped fast from the German warehouse."}
+   ]}
 ];
 
 const faqData = [
@@ -789,6 +861,10 @@ const translations = {
     footShop:"Shop", footCompany:"Company", footHow:"How sourcing works", footCustoms:"Shipping & customs",
     footSupport:"Support", footTrack:"Track an order", footReturns:"Returns", footContact:"Contact",
     footCopy:"© 2026 VA Tactical — mockup for internal review",
+    contactTag:"Contact", contactH1:"Talk to the team.",
+    contactP1:"For order questions, sourcing requests, or wholesale/B2B pricing — reach us directly and we'll route it to the right person.",
+    contactEmailLbl:"General & orders", contactWholesaleLbl:"Wholesale & B2B",
+    contactNote:"We typically reply within one business day. For wholesale inquiries, include your business name, country, and expected monthly volume so we can quote tiered pricing straight away.",
     cartSubtotal:"Subtotal", cartCheckout:"Checkout", cartCheckoutNote:"Demo only — no payment gateway connected yet.",
     cartEmpty:"Your cart is empty.", addToCart:"Add to cart", viewDetails:"View details", backToCatalog:"Back to catalog",
     pdSpecs:"Specifications",
@@ -1049,18 +1125,24 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
 });
 
 // ===== PRODUCT DETAIL =====
+function avgRating(p){ return (p.reviews && p.reviews.length) ? p.reviews.reduce((s,r)=>s+r.rating,0)/p.reviews.length : 0; }
+function starString(n){ const full = Math.round(n); return '★'.repeat(full) + '☆'.repeat(5-full); }
+
 function renderProductDetail(id){
   const p = products.find(pp => pp.id === id);
   const wrap = document.getElementById('productDetail');
-  if(!p){ wrap.innerHTML = '<p>Product not found.</p>'; return; }
+  const reviewsWrap = document.getElementById('productReviews');
+  if(!p){ wrap.innerHTML = '<p>Product not found.</p>'; reviewsWrap.innerHTML=''; return; }
   document.getElementById('pdCrumbCat').textContent = t(catKeyMap[p.cat]);
   document.getElementById('pdCrumbName').textContent = p.name;
+  const avg = avgRating(p);
   wrap.innerHTML = `
     <div class="pd-media">${p.img ? `<img src="${p.img}" alt="${p.name}">` : `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="${p.icon}"/></svg>`}</div>
     <div>
       <div class="pd-cat">${t(catKeyMap[p.cat])} · ${p.origin}</div>
       <h1 class="pd-title">${p.name}</h1>
       <div class="pd-brand">${p.brand}</div>
+      ${avg ? `<div class="pd-rating mono">${starString(avg)} <span class="count">${avg.toFixed(1)} · ${p.reviews.length} reviews</span></div>` : ''}
       <div class="pd-price mono">${p.priceLabel}</div>
       <p class="pd-desc">${p.desc}</p>
       <ul class="pd-specs">${p.specs.map(s => `<li><span>${s[0]}</span><span>${s[1]}</span></li>`).join('')}</ul>
@@ -1070,6 +1152,28 @@ function renderProductDetail(id){
       </div>
     </div>`;
   document.getElementById('pdAddBtn').addEventListener('click', () => addToCart(p.id));
+  renderReviews(p, reviewsWrap);
+}
+
+function renderReviews(p, el){
+  if(!p.reviews || !p.reviews.length){ el.innerHTML = ''; return; }
+  const avg = avgRating(p);
+  el.innerHTML = `
+    <div class="reviews">
+      <div class="reviews-head">
+        <h3>Customer reviews</h3>
+        <div class="reviews-avg mono"><span class="stars">${starString(avg)}</span> ${avg.toFixed(1)} · ${p.reviews.length} reviews</div>
+      </div>
+      ${p.reviews.map(r => `
+        <div class="review">
+          <div class="review-head">
+            <div><span class="review-name">${r.name}</span> <span class="review-country">· ${r.country}</span></div>
+            <div class="review-date mono">${r.date}</div>
+          </div>
+          <div class="review-stars">${starString(r.rating)}</div>
+          <p class="review-text">${r.text}</p>
+        </div>`).join('')}
+    </div>`;
 }
 
 // ===== FAQ =====
@@ -1103,6 +1207,8 @@ function route(){
     showView('faq');
   } else if(hash === '#/about'){
     showView('about');
+  } else if(hash === '#/contact'){
+    showView('contact');
   } else {
     showView('home');
   }
