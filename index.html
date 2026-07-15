@@ -430,6 +430,7 @@
   .pd-actions{display:flex; gap:12px; align-items:center;}
   .pd-rating{font-size:13px; color:var(--khaki); margin-bottom:14px; display:flex; align-items:center; gap:8px;}
   .pd-rating .count{color:var(--ink-dim);}
+  .pd-price-note{font-size:11px; color:var(--ok); text-transform:uppercase; letter-spacing:0.06em; margin-top:-16px; margin-bottom:20px;}
 
   /* ===== REVIEWS ===== */
   .reviews{border-top:1px solid var(--line); padding-top:32px; max-width:760px;}
@@ -492,6 +493,7 @@
     <div class="header-right">
       <select class="lang-select" id="langSelect" aria-label="Language">
         <option value="en">EN · EUR</option>
+        <option value="pl">PL · EUR</option>
         <option value="de">DE · EUR</option>
         <option value="fr">FR · EUR</option>
         <option value="es">ES · EUR</option>
@@ -741,7 +743,7 @@
 // retailers/wholesalers (Military1st, Military Range, Optics-Trade) — July 2026.
 // Wholesale/dropship cost would sit below these figures; see chat notes.
 const products = [
-  {id:"raccoon-mk2", name:"Raccoon Mk2 Backpack, 20L", brand:"Helikon-Tex", cat:"load", price:67.00, priceLabel:"from €67", origin:"PL",
+  {id:"raccoon-mk2", name:"Raccoon Mk2 Backpack, 20L", brand:"Helikon-Tex", cat:"load", price:122.71, priceLabel:"from €122.71", origin:"PL",
    img:"images/backpack.webp",
    icon:"M6 8 V22 H18 V8 M6 8 C6 4 9 2 12 2 C15 2 18 4 18 8 M9 12 H15 M9 16 H15",
    desc:"A compact 20-litre daily carry pack built from Cordura 500D fabric with a DWR coating. MOLLE/PALS webbing on the front and sides lets you add pouches as your load grows, and it's hydration-bladder compatible.",
@@ -751,7 +753,7 @@ const products = [
      {name:"Julia S.", country:"Germany", rating:4, date:"May 2026", text:"Solid pack for the price. Only gripe is the chest strap sits a bit high on my frame, but easy to adjust. Cordura feels genuinely heavy-duty."},
      {name:"Tomasz B.", country:"Poland", rating:5, date:"Mar 2026", text:"Second one I've bought — first is beat up after 18 months of range trips and still holding fine. Zippers still smooth."}
    ]},
-  {id:"ultimate-assault-vest", name:"Ultimate Assault Vest, Flecktarn", brand:"Mil-Tec", cat:"load", price:50.11, priceLabel:"€50.11", origin:"DE",
+  {id:"ultimate-assault-vest", name:"Ultimate Assault Vest, Flecktarn", brand:"Mil-Tec", cat:"load", price:94.67, priceLabel:"€94.67", origin:"DE",
    img:"images/vest-assault.jpg",
    icon:"M4 20 L4 8 L12 3 L20 8 L20 20 M4 20 L20 20 M9 20 V13 H15 V20",
    desc:"A lightweight modular assault vest with full MOLLE webbing across the chest and back panels, sized to layer over base clothing without restricting movement.",
@@ -761,7 +763,7 @@ const products = [
      {name:"Katarzyna W.", country:"Poland", rating:4, date:"Apr 2026", text:"Good vest for the money, mag pouches fit standard AR mags fine. Velcro on the admin pocket could be a bit stronger."},
      {name:"Ben H.", country:"Netherlands", rating:5, date:"Feb 2026", text:"Lighter than I expected — layers well over a plate carrier for training days."}
    ]},
-  {id:"plate-carrier-gen2", name:"Plate Carrier Vest Gen II", brand:"Mil-Tec", cat:"protect", price:79.01, priceLabel:"€79.01", origin:"DE",
+  {id:"plate-carrier-gen2", name:"Plate Carrier Vest Gen II", brand:"Mil-Tec", cat:"protect", price:142.65, priceLabel:"€142.65", origin:"DE",
    img:"images/plate-carrier.jpg",
    icon:"M12 2 20 6 20 12C20 17 16 20.5 12 22 8 20.5 4 17 4 12 4 6 12 2 12 2Z",
    desc:"Second-generation plate carrier accepting soft or hard ballistic plates up to Level III/IV in a large BALCS/SPEAR cut. Triple front magazine pouches and a PVC-coated shell for durability.",
@@ -771,7 +773,7 @@ const products = [
      {name:"Felix R.", country:"Germany", rating:4, date:"May 2026", text:"PVC shell feels tougher than the price suggests. Shoulder pads could use more padding for all-day wear."},
      {name:"Marta O.", country:"Poland", rating:5, date:"Apr 2026", text:"Bought this for range days, triple mag panel is genuinely useful. Delivered in 3 days from Germany."}
    ]},
-  {id:"kevlar-gloves", name:"Kevlar Tactical Gloves", brand:"Mil-Tec", cat:"gloves", price:22.94, priceLabel:"€22.94 +VAT", origin:"DE",
+  {id:"kevlar-gloves", name:"Kevlar Tactical Gloves", brand:"Mil-Tec", cat:"gloves", price:44.57, priceLabel:"€44.57", origin:"DE",
    img:"images/gloves-kevlar.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Cut- and heat-resistant gloves built around Kevlar fibre, rated to hold a 250°C object for over 15 seconds and EN 388 class 5 cut resistance.",
@@ -781,7 +783,7 @@ const products = [
      {name:"Anna L.", country:"Poland", rating:4, date:"Apr 2026", text:"Warm enough for autumn work, a little bulky for fine motor tasks. Stitching held up after a few months."},
      {name:"Chris D.", country:"UK", rating:5, date:"Mar 2026", text:"Ordered M, fits like a glove (pun intended). Quick delivery considering it came from mainland Europe."}
    ]},
-  {id:"leather-fingerless", name:"Leather Fingerless Gloves", brand:"Mil-Tec", cat:"gloves", price:17.71, priceLabel:"€17.71 +VAT", origin:"DE",
+  {id:"leather-fingerless", name:"Leather Fingerless Gloves", brand:"Mil-Tec", cat:"gloves", price:35.88, priceLabel:"€35.88", origin:"DE",
    img:"images/gloves-fingerless.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Goatskin leather fingerless gloves with polystyrene knuckle protection cushioned in EVA foam, and a hook-and-loop wrist closure for a snug fit.",
@@ -791,7 +793,7 @@ const products = [
      {name:"Ola K.", country:"Poland", rating:5, date:"Apr 2026", text:"Great for range work — trigger feel is unaffected."},
      {name:"Daniel F.", country:"Germany", rating:5, date:"Feb 2026", text:"Goatskin is soft but tough. No complaints after regular use for three months."}
    ]},
-  {id:"nomex-gloves", name:"Action Nomex Gloves", brand:"Mil-Tec", cat:"gloves", price:19.73, priceLabel:"€19.73 +VAT", origin:"DE",
+  {id:"nomex-gloves", name:"Action Nomex Gloves", brand:"Mil-Tec", cat:"gloves", price:39.24, priceLabel:"€39.24", origin:"DE",
    img:"images/gloves-nomex.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Cowhide palm and knuckle panels over a Nomex (DuPont) body, with EVA foam knuckle padding — built for grip in wet or dry conditions.",
@@ -801,7 +803,7 @@ const products = [
      {name:"Weronika G.", country:"Poland", rating:4, date:"May 2026", text:"Nomex back keeps hands cool. Sizing runs slightly large, order one size down."},
      {name:"Mateusz J.", country:"Poland", rating:5, date:"Mar 2026", text:"Durable stitching, cowhide palm hasn't cracked after regular outdoor use."}
    ]},
-  {id:"combat-touch-gloves", name:"Combat Touch Gloves", brand:"Mil-Tec", cat:"gloves", price:9.45, priceLabel:"€9.45 +VAT", origin:"DE",
+  {id:"combat-touch-gloves", name:"Combat Touch Gloves", brand:"Mil-Tec", cat:"gloves", price:22.17, priceLabel:"€22.17", origin:"DE",
    img:"images/gloves-touch.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"A lightweight everyday glove with touchscreen-compatible index finger and thumb, ventilated palm, and an adjustable hook-and-loop cuff.",
@@ -811,7 +813,7 @@ const products = [
      {name:"Ewa M.", country:"Poland", rating:4, date:"Apr 2026", text:"Thin enough for everyday carry, though not much warmth in cold weather — more of a three-season glove."},
      {name:"Jonas K.", country:"Germany", rating:5, date:"Jan 2026", text:"Cheap enough to keep a spare pair in every bag. Ventilated palm is a nice touch in summer."}
    ]},
-  {id:"led-headlamp", name:"LED 4-Colour Headlamp", brand:"Mil-Tec", cat:"tools", price:11.88, priceLabel:"€11.88 +VAT", origin:"DE",
+  {id:"led-headlamp", name:"LED 4-Colour Headlamp", brand:"Mil-Tec", cat:"tools", price:26.20, priceLabel:"€26.20", origin:"DE",
    img:"images/headlamp.jpg",
    icon:"M12 3a5 5 0 0 0-5 5c0 2 1 3 2 4v3h6v-3c1-1 2-2 2-4a5 5 0 0 0-5-5ZM10 19h4",
    desc:"A 65-lumen headlamp with four LED colour modes and an adjustable elastic band, MOLLE/PALS mountable to a pack or belt.",
@@ -829,7 +831,8 @@ const faqData = [
   {q:"Is there a minimum order?", a:"No minimum for standard retail orders. Wholesale/B2B accounts get tiered pricing starting from 10 units per SKU."},
   {q:"Can you ship to Ukraine?", a:"Yes for most load-bearing and apparel items. Optics, electronics and anything classed as dual-use goods go through an export compliance check first — some items may require extra documentation or aren't available for that destination."},
   {q:"What payment methods do you accept?", a:"Card payments via our EU payment provider. Wholesale accounts can also be invoiced on net terms after verification."},
-  {q:"What's your returns policy?", a:"Unused items in original packaging can be returned within 30 days of delivery. Return shipping is the buyer's responsibility unless the item arrived faulty."}
+  {q:"What's your returns policy?", a:"Unused items in original packaging can be returned within 30 days of delivery. Return shipping is the buyer's responsibility unless the item arrived faulty."},
+  {q:"Are your prices including VAT and shipping?", a:"Yes — every listed price already includes 23% EU VAT and standard tracked shipping within the EU. What you see is what you pay at checkout, no hidden fees added later."}
 ];
 
 // ===== i18n =====
@@ -856,7 +859,7 @@ const translations = {
     b2bTag:"B2B", b2bHeading:"Supplying an IB desk, a range, or a reseller?",
     b2bDesc:"Tiered pricing from 10+ units, dedicated account handling, and net-terms invoicing for verified businesses.",
     b2bCta:"Request wholesale access",
-    complianceNote:"<strong style=\"color:var(--ink)\">Demo content notice —</strong> products, brands and prices shown are real, pulled from public retail/wholesale listings (Military1st, Military Range, Optics-Trade) as of July 2026 — not confirmed dropship terms. Actual cost and margin depend on the agreement signed with each supplier. No live catalog, checkout, or supplier API is connected.",
+    complianceNote:"<strong style=\"color:var(--ink)\">Demo content notice —</strong> products and brands shown are real, referenced from public retail/wholesale listings (Military1st, Military Range, Optics-Trade) as of July 2026. Listed prices include 23% EU VAT, standard EU shipping and margin — not confirmed dropship terms with any supplier. No live catalog, checkout, or supplier API is connected.",
     footDesc:"A European sourcing layer for tactical and field equipment — dropshipped direct from manufacturer warehouses across Europe.",
     footShop:"Shop", footCompany:"Company", footHow:"How sourcing works", footCustoms:"Shipping & customs",
     footSupport:"Support", footTrack:"Track an order", footReturns:"Returns", footContact:"Contact",
@@ -865,6 +868,7 @@ const translations = {
     contactP1:"For order questions, sourcing requests, or wholesale/B2B pricing — reach us directly and we'll route it to the right person.",
     contactEmailLbl:"General & orders", contactWholesaleLbl:"Wholesale & B2B",
     contactNote:"We typically reply within one business day. For wholesale inquiries, include your business name, country, and expected monthly volume so we can quote tiered pricing straight away.",
+    pdPriceNote:"VAT & EU shipping included",
     cartSubtotal:"Subtotal", cartCheckout:"Checkout", cartCheckoutNote:"Demo only — no payment gateway connected yet.",
     cartEmpty:"Your cart is empty.", addToCart:"Add to cart", viewDetails:"View details", backToCatalog:"Back to catalog",
     pdSpecs:"Specifications",
@@ -904,7 +908,8 @@ const translations = {
     footSupport:"Support", footTrack:"Bestellung verfolgen", footReturns:"Rücksendungen", footContact:"Kontakt",
     footCopy:"© 2026 VA Tactical — Mockup zur internen Prüfung",
     cartSubtotal:"Zwischensumme", cartCheckout:"Zur Kasse", cartCheckoutNote:"Nur Demo — noch kein Zahlungsanbieter angebunden.",
-    cartEmpty:"Ihr Warenkorb ist leer.", addToCart:"In den Warenkorb", viewDetails:"Details ansehen", backToCatalog:"Zurück zum Katalog"
+    cartEmpty:"Ihr Warenkorb ist leer.", addToCart:"In den Warenkorb", viewDetails:"Details ansehen", backToCatalog:"Zurück zum Katalog",
+    pdPriceNote:"Inkl. MwSt. & EU-Versand"
   },
   fr: {
     navGear:"Équipement", navShips:"Livraison", navWholesale:"Grossiste", navCompliance:"Conformité", navFaq:"FAQ", navAbout:"À propos", cart:"Panier",
@@ -934,7 +939,8 @@ const translations = {
     footSupport:"Support", footTrack:"Suivre une commande", footReturns:"Retours", footContact:"Contact",
     footCopy:"© 2026 VA Tactical — maquette pour revue interne",
     cartSubtotal:"Sous-total", cartCheckout:"Commander", cartCheckoutNote:"Démo uniquement — aucun moyen de paiement connecté.",
-    cartEmpty:"Votre panier est vide.", addToCart:"Ajouter au panier", viewDetails:"Voir les détails", backToCatalog:"Retour au catalogue"
+    cartEmpty:"Votre panier est vide.", addToCart:"Ajouter au panier", viewDetails:"Voir les détails", backToCatalog:"Retour au catalogue",
+    pdPriceNote:"TVA et livraison UE incluses"
   },
   es: {
     navGear:"Equipo", navShips:"Envíos", navWholesale:"Mayorista", navCompliance:"Cumplimiento", navFaq:"Preguntas", navAbout:"Sobre nosotros", cart:"Carrito",
@@ -964,7 +970,8 @@ const translations = {
     footSupport:"Soporte", footTrack:"Rastrear pedido", footReturns:"Devoluciones", footContact:"Contacto",
     footCopy:"© 2026 VA Tactical — maqueta para revisión interna",
     cartSubtotal:"Subtotal", cartCheckout:"Finalizar compra", cartCheckoutNote:"Solo demo — sin pasarela de pago conectada.",
-    cartEmpty:"Tu carrito está vacío.", addToCart:"Añadir al carrito", viewDetails:"Ver detalles", backToCatalog:"Volver al catálogo"
+    cartEmpty:"Tu carrito está vacío.", addToCart:"Añadir al carrito", viewDetails:"Ver detalles", backToCatalog:"Volver al catálogo",
+    pdPriceNote:"IVA y envío UE incluidos"
   },
   uk: {
     navGear:"Спорядження", navShips:"Доставка", navWholesale:"Опт", navCompliance:"Комплаєнс", navFaq:"Питання", navAbout:"Про нас", cart:"Кошик",
@@ -994,7 +1001,51 @@ const translations = {
     footSupport:"Підтримка", footTrack:"Відстежити замовлення", footReturns:"Повернення", footContact:"Контакти",
     footCopy:"© 2026 VA Tactical — макет для внутрішнього перегляду",
     cartSubtotal:"Проміжний підсумок", cartCheckout:"Оформити замовлення", cartCheckoutNote:"Лише демо — платіжний шлюз ще не підключено.",
-    cartEmpty:"Ваш кошик порожній.", addToCart:"Додати в кошик", viewDetails:"Детальніше", backToCatalog:"Назад до каталогу"
+    cartEmpty:"Ваш кошик порожній.", addToCart:"Додати в кошик", viewDetails:"Детальніше", backToCatalog:"Назад до каталогу",
+    pdPriceNote:"ПДВ і доставка по ЄС включені"
+  },
+  pl: {
+    navGear:"Sprzęt", navShips:"Jak wysyłamy", navWholesale:"Hurt", navCompliance:"Zgodność", navFaq:"FAQ", navAbout:"O nas", cart:"Koszyk",
+    heroEyebrow:"NA ŻYWO · 6 MAGAZYNÓW UE PODŁĄCZONYCH",
+    heroTitle:"Sprzęt sprawdzony w terenie, <em>sprowadzany bezpośrednio</em> od europejskich producentów.",
+    heroSub:"Nie prowadzimy własnego magazynu — każde zamówienie trafia prosto z magazynu producenta w Polsce lub Niemczech pod Twoje drzwi. Te same marki, bez marży pośrednika, pełne śledzenie przesyłki.",
+    ctaBrowse:"Przeglądaj katalog", ctaWholesale:"Hurt i B2B",
+    statBrands:"Marek w ofercie", statCountries:"Krajów z dostawą", statDispatch:"Okno wysyłki", statMin:"Minimalne zamówienie",
+    trustLabel:"Sprowadzane przez",
+    catalogTag:"Katalog", catalogHeading:"Aktualnie w ofercie",
+    catalogDesc:"Roboczy przykład asortymentu na start — najpierw sprzęt nośny i ochronny, odzież dojdzie później.",
+    filterAll:"Wszystko", filterLoad:"Sprzęt nośny", filterProtect:"Ochrona", filterGloves:"Rękawice", filterTools:"Oświetlenie i EDC",
+    catLoad:"Sprzęt nośny", catProtect:"Ochrona", catGloves:"Rękawice", catTools:"Oświetlenie", stockIn:"Dostępne",
+    supplyTag:"Jak naprawdę porusza się zamówienie", supplyHeading:"Bez magazynu. Jedna trasa, śledzona od początku do końca.",
+    supplyDesc:"To cały sens tego modelu — Ty nigdy nie dotykasz towaru, my też nie.",
+    r1:"Zamówienie złożone", r2:"Producent PL/DE", r2s:"Skompletowane tego samego dnia", r3:"Cross-dock", r3s:"Dokumenty celne",
+    r4:"Ostatnia mila", r4s:"Lokalny kurier", r5:"Dostarczone", r5s:"3–5 dni, cała UE",
+    v1h:"Bez magazynu, bez zamrożonego kapitału", v1p:"Prezentujemy to, co mają nasi partnerzy dostawcy, aktualizowane codziennie — nic nie leży u nas.",
+    v2h:"Jedna faktura na zamówienie", v2p:"Zamówienia z wielu marek nadal wysyłamy jako jedną śledzoną przesyłkę, gdy tylko trasa na to pozwala.",
+    v3h:"Dopuszczone do wysyłki", v3p:"Każdy produkt w katalogu przeszedł kontrolę klasyfikacji eksportowej przed publikacją.",
+    b2bTag:"B2B", b2bHeading:"Zaopatrujesz biuro maklerskie, strzelnicę albo resellera?",
+    b2bDesc:"Ceny warstwowe od 10 sztuk, dedykowana obsługa konta i fakturowanie z odroczonym terminem dla zweryfikowanych firm.",
+    b2bCta:"Poproś o dostęp hurtowy",
+    complianceNote:"<strong style=\"color:var(--ink)\">Informacja o treści demo —</strong> produkty i marki są prawdziwe, na podstawie publicznych ofert detalicznych/hurtowych (Military1st, Military Range, Optics-Trade), stan na lipiec 2026. Podane ceny zawierają 23% VAT, standardową wysyłkę na terenie UE i marżę — to nie są potwierdzone warunki dropshippingu z żadnym dostawcą. Brak podłączonego katalogu na żywo, płatności ani API dostawcy.",
+    footDesc:"Europejska warstwa zaopatrzenia w sprzęt taktyczny i polowy — wysyłka bezpośrednio z magazynów producentów w całej Europie.",
+    footShop:"Sklep", footCompany:"Firma", footHow:"Jak działa zaopatrzenie", footCustoms:"Wysyłka i cło",
+    footSupport:"Wsparcie", footTrack:"Śledź zamówienie", footReturns:"Zwroty", footContact:"Kontakt",
+    footCopy:"© 2026 VA Tactical — makieta do wewnętrznego przeglądu",
+    contactTag:"Kontakt", contactH1:"Porozmawiaj z zespołem.",
+    contactP1:"W sprawie zamówień, zaopatrzenia lub cen hurtowych/B2B — napisz bezpośrednio, a przekierujemy sprawę do właściwej osoby.",
+    contactEmailLbl:"Ogólne i zamówienia", contactWholesaleLbl:"Hurt i B2B",
+    contactNote:"Zwykle odpowiadamy w ciągu jednego dnia roboczego. W zapytaniach hurtowych podaj nazwę firmy, kraj i szacowany miesięczny wolumen, abyśmy mogli od razu podać ceny warstwowe.",
+    cartSubtotal:"Suma częściowa", cartCheckout:"Do kasy", cartCheckoutNote:"Tylko demo — bramka płatności nie jest jeszcze podłączona.",
+    cartEmpty:"Twój koszyk jest pusty.", addToCart:"Dodaj do koszyka", viewDetails:"Zobacz szczegóły", backToCatalog:"Powrót do katalogu",
+    pdSpecs:"Specyfikacja",
+    faqTag:"Wsparcie", faqTitle:"Najczęściej zadawane pytania",
+    aboutTag:"O VA Tactical", aboutH1:"Warstwa zaopatrzenia, nie magazyn.",
+    aboutP1:"VA Tactical łączy europejskich kupujących z producentami sprzętu taktycznego i polowego w Polsce, Niemczech i całej UE — nigdy nie trzymając własnych zapasów. Każde zamówienie trafia prosto z magazynu producenta pod Twoje drzwi.",
+    aboutP2:"Działamy na tych samych relacjach hurtowych, z których korzystają uznani dystrybutorzy w UE — Military Range, Military.eu i bezpośrednie konta u producentów — z jedną różnicą: brak martwych zapasów, brak kosztów magazynowania i ceny, które to odzwierciedlają.",
+    aboutV1h:"Zgodność przede wszystkim", aboutV1p:"Każdy produkt jest sprawdzany pod kątem unijnych przepisów eksportowych dla towarów podwójnego zastosowania przed dodaniem do oferty.",
+    aboutV2h:"Zero zapasów, zawsze", aboutV2p:"Nigdy nie kupujemy z wyprzedzeniem — każde zamówienie uruchamia własną realizację.",
+    aboutV3h:"Zbudowane do skalowania", aboutV3p:"Od pojedynczych zestawów polowych po wolumeny biur maklerskich i resellerów, na tej samej infrastrukturze.",
+    pdPriceNote:"VAT i wysyłka UE wliczone w cenę"
   }
 };
 
@@ -1144,6 +1195,7 @@ function renderProductDetail(id){
       <div class="pd-brand">${p.brand}</div>
       ${avg ? `<div class="pd-rating mono">${starString(avg)} <span class="count">${avg.toFixed(1)} · ${p.reviews.length} reviews</span></div>` : ''}
       <div class="pd-price mono">${p.priceLabel}</div>
+      <div class="pd-price-note">${t('pdPriceNote')}</div>
       <p class="pd-desc">${p.desc}</p>
       <ul class="pd-specs">${p.specs.map(s => `<li><span>${s[0]}</span><span>${s[1]}</span></li>`).join('')}</ul>
       <div class="pd-actions">
