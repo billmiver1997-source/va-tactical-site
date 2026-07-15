@@ -220,22 +220,30 @@
     aspect-ratio:1/1; position:relative; overflow:hidden;
     display:flex; align-items:center; justify-content:center;
     background:
-      radial-gradient(120% 90% at 30% 15%, rgba(196,167,125,0.22) 0%, transparent 55%),
-      linear-gradient(155deg, #363B29 0%, #21251A 55%, #181B12 100%);
+      radial-gradient(120% 90% at 30% 15%, rgba(196,167,125,0.16) 0%, transparent 55%),
+      linear-gradient(155deg, #D9D2C0 0%, #C9C1AC 55%, #B7AF98 100%);
     border-bottom:1px solid var(--line);
   }
   .card-media::after{
     content:"";
     position:absolute; inset:0;
     background:
-      repeating-linear-gradient(115deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 26px);
-    mix-blend-mode:multiply; opacity:0.5;
+      repeating-linear-gradient(115deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 26px);
+    mix-blend-mode:multiply; opacity:0.35;
+    pointer-events:none;
+  }
+  .card-media img{
+    width:100%; height:100%; object-fit:cover; object-position:center;
+    position:relative; z-index:1;
+    filter:drop-shadow(0 10px 14px rgba(0,0,0,0.35));
+    transition:transform .35s ease;
   }
   .card-media svg{
     width:52%; height:52%; stroke:var(--khaki); opacity:0.92; position:relative; z-index:1;
     filter:drop-shadow(0 10px 14px rgba(0,0,0,0.5));
     transition:transform .3s ease;
   }
+  .card:hover .card-media img{transform:scale(1.07);}
   .card:hover .card-media svg{transform:scale(1.06) translateY(-2px);}
   .badge{
     position:absolute; top:10px; left:10px;
@@ -382,8 +390,9 @@
   .cart-items{flex:1; overflow-y:auto; padding:12px 24px;}
   .cart-empty{color:var(--ink-dim); font-size:13px; padding:40px 0; text-align:center;}
   .cart-line{display:flex; gap:12px; padding:16px 0; border-bottom:1px solid var(--line);}
-  .cart-line-media{width:56px; height:56px; flex-shrink:0; background:var(--bg-deep); border:1px solid var(--line); border-radius:var(--radius); display:flex; align-items:center; justify-content:center;}
+  .cart-line-media{width:56px; height:56px; flex-shrink:0; background:#C9C1AC; border:1px solid var(--line); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; overflow:hidden;}
   .cart-line-media svg{width:60%; height:60%; stroke:var(--khaki);}
+  .cart-line-media img{width:100%; height:100%; object-fit:cover;}
   .cart-line-body{flex:1; display:flex; flex-direction:column; gap:4px;}
   .cart-line-name{font-size:13px; font-family:'Oswald',sans-serif; font-weight:500;}
   .cart-line-brand{font-size:11px; color:var(--ink-dim);}
@@ -406,9 +415,10 @@
   .pd-media{
     aspect-ratio:1/1; position:relative; overflow:hidden; border:1px solid var(--line);
     display:flex; align-items:center; justify-content:center;
-    background:radial-gradient(120% 90% at 30% 15%, rgba(196,167,125,0.22) 0%, transparent 55%), linear-gradient(155deg, #363B29 0%, #21251A 55%, #181B12 100%);
+    background:radial-gradient(120% 90% at 30% 15%, rgba(196,167,125,0.16) 0%, transparent 55%), linear-gradient(155deg, #D9D2C0 0%, #C9C1AC 55%, #B7AF98 100%);
   }
   .pd-media svg{width:44%; height:44%; stroke:var(--khaki); filter:drop-shadow(0 14px 18px rgba(0,0,0,0.5));}
+  .pd-media img{width:100%; height:100%; object-fit:cover; filter:drop-shadow(0 14px 18px rgba(0,0,0,0.3));}
   .pd-cat{font-size:11px; color:var(--khaki); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;}
   .pd-title{font-size:clamp(26px,3.2vw,38px); margin-bottom:10px;}
   .pd-brand{color:var(--ink-dim); font-size:14px; margin-bottom:20px;}
@@ -700,34 +710,42 @@
 // Wholesale/dropship cost would sit below these figures; see chat notes.
 const products = [
   {id:"raccoon-mk2", name:"Raccoon Mk2 Backpack, 20L", brand:"Helikon-Tex", cat:"load", price:67.00, priceLabel:"from €67", origin:"PL",
+   img:"images/backpack.webp",
    icon:"M6 8 V22 H18 V8 M6 8 C6 4 9 2 12 2 C15 2 18 4 18 8 M9 12 H15 M9 16 H15",
    desc:"A compact 20-litre daily carry pack built from Cordura 500D fabric with a DWR coating. MOLLE/PALS webbing on the front and sides lets you add pouches as your load grows, and it's hydration-bladder compatible.",
    specs:[["Capacity","20 L"],["Material","Cordura 500D"],["Weight","~1.2 kg"],["Zippers","YKK"],["Country of origin","Poland"]]},
   {id:"ultimate-assault-vest", name:"Ultimate Assault Vest, Flecktarn", brand:"Mil-Tec", cat:"load", price:50.11, priceLabel:"€50.11", origin:"DE",
+   img:"images/vest-assault.jpg",
    icon:"M4 20 L4 8 L12 3 L20 8 L20 20 M4 20 L20 20 M9 20 V13 H15 V20",
    desc:"A lightweight modular assault vest with full MOLLE webbing across the chest and back panels, sized to layer over base clothing without restricting movement.",
    specs:[["System","MOLLE/PALS"],["Pattern","Flecktarn"],["Manufacturer","Sturm Handels GmbH"],["Country of origin","Germany"]]},
   {id:"plate-carrier-gen2", name:"Plate Carrier Vest Gen II", brand:"Mil-Tec", cat:"protect", price:79.01, priceLabel:"€79.01", origin:"DE",
+   img:"images/plate-carrier.jpg",
    icon:"M12 2 20 6 20 12C20 17 16 20.5 12 22 8 20.5 4 17 4 12 4 6 12 2 12 2Z",
    desc:"Second-generation plate carrier accepting soft or hard ballistic plates up to Level III/IV in a large BALCS/SPEAR cut. Triple front magazine pouches and a PVC-coated shell for durability.",
    specs:[["Plate size","up to 11×13 in"],["Rated for","Level III / IV plates"],["Weight","~950 g"],["Country of origin","Germany"]]},
   {id:"kevlar-gloves", name:"Kevlar Tactical Gloves", brand:"Mil-Tec", cat:"gloves", price:22.94, priceLabel:"€22.94 +VAT", origin:"DE",
+   img:"images/gloves-kevlar.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Cut- and heat-resistant gloves built around Kevlar fibre, rated to hold a 250°C object for over 15 seconds and EN 388 class 5 cut resistance.",
    specs:[["Cut resistance","EN 388, class 5"],["Heat resistance","up to 250°C"],["Sizes","M–XXL"],["Country of origin","Germany"]]},
   {id:"leather-fingerless", name:"Leather Fingerless Gloves", brand:"Mil-Tec", cat:"gloves", price:17.71, priceLabel:"€17.71 +VAT", origin:"DE",
+   img:"images/gloves-fingerless.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Goatskin leather fingerless gloves with polystyrene knuckle protection cushioned in EVA foam, and a hook-and-loop wrist closure for a snug fit.",
    specs:[["Material","100% goatskin leather"],["Knuckle protection","EVA foam"],["Sizes","S–XXL"],["Country of origin","Germany"]]},
   {id:"nomex-gloves", name:"Action Nomex Gloves", brand:"Mil-Tec", cat:"gloves", price:19.73, priceLabel:"€19.73 +VAT", origin:"DE",
+   img:"images/gloves-nomex.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"Cowhide palm and knuckle panels over a Nomex (DuPont) body, with EVA foam knuckle padding — built for grip in wet or dry conditions.",
    specs:[["Palm material","Cowhide"],["Body material","Nomex by DuPont"],["Sizes","S–XL"],["Country of origin","Germany"]]},
   {id:"combat-touch-gloves", name:"Combat Touch Gloves", brand:"Mil-Tec", cat:"gloves", price:9.45, priceLabel:"€9.45 +VAT", origin:"DE",
+   img:"images/gloves-touch.jpg",
    icon:"M8 22V11a2 2 0 1 1 4 0M12 22V9a2 2 0 1 1 4 0M16 22v-9a2 2 0 1 1 4 0v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3a2 2 0 1 1 4 0",
    desc:"A lightweight everyday glove with touchscreen-compatible index finger and thumb, ventilated palm, and an adjustable hook-and-loop cuff.",
    specs:[["Touchscreen compatible","Yes"],["Back material","70% nylon, 30% elastane"],["Sizes","S–XXL"],["Country of origin","Germany"]]},
   {id:"led-headlamp", name:"LED 4-Colour Headlamp", brand:"Mil-Tec", cat:"tools", price:11.88, priceLabel:"€11.88 +VAT", origin:"DE",
+   img:"images/headlamp.jpg",
    icon:"M12 3a5 5 0 0 0-5 5c0 2 1 3 2 4v3h6v-3c1-1 2-2 2-4a5 5 0 0 0-5-5ZM10 19h4",
    desc:"A 65-lumen headlamp with four LED colour modes and an adjustable elastic band, MOLLE/PALS mountable to a pack or belt.",
    specs:[["Brightness","65 lumens"],["Power","3× AAA"],["Mountable","MOLLE/PALS"],["Country of origin","Germany"]]}
@@ -934,7 +952,7 @@ function renderCatalog(filter){
         <a href="#/product/${p.id}" class="card-media">
           <span class="badge">${t('stockIn')}</span>
           <span class="origin-flag mono">${p.origin}</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="${p.icon}"/></svg>
+          ${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="${p.icon}"/></svg>`}
         </a>
         <div class="card-body">
           <a href="#/product/${p.id}">
@@ -1000,7 +1018,7 @@ function renderCart(){
     subtotal += p.price * line.qty;
     return `
       <div class="cart-line">
-        <div class="cart-line-media"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="${p.icon}"/></svg></div>
+        <div class="cart-line-media">${p.img ? `<img src="${p.img}" alt="${p.name}">` : `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="${p.icon}"/></svg>`}</div>
         <div class="cart-line-body">
           <div class="cart-line-name">${p.name}</div>
           <div class="cart-line-brand">${p.brand}</div>
@@ -1038,7 +1056,7 @@ function renderProductDetail(id){
   document.getElementById('pdCrumbCat').textContent = t(catKeyMap[p.cat]);
   document.getElementById('pdCrumbName').textContent = p.name;
   wrap.innerHTML = `
-    <div class="pd-media"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="${p.icon}"/></svg></div>
+    <div class="pd-media">${p.img ? `<img src="${p.img}" alt="${p.name}">` : `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="${p.icon}"/></svg>`}</div>
     <div>
       <div class="pd-cat">${t(catKeyMap[p.cat])} · ${p.origin}</div>
       <h1 class="pd-title">${p.name}</h1>
